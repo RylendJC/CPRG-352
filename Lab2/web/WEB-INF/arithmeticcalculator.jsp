@@ -27,10 +27,12 @@
                 <button type="submit" name="operation" value="%">%</button>
             </p>
 
-            
-            <% if (request.getAttribute("message") != null) { %>
-                    <p>Result: <%= request.getAttribute("message")%></p>
-        <% } %>
+
+            <% if (request.getAttribute("message") != null) {%>
+            <p>Result: <%= request.getAttribute("message")%></p>
+            <% }%>
         </form>
+        <a href="/Lab2/age">Age Calculator</a>
+
     </body>
 </html>

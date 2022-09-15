@@ -30,7 +30,7 @@
        
 
         </form>
-        
+        <a href="/Lab2/arithmetic">Arithmetic Calculator</a>
 
 
     </body>

@@ -59,43 +59,48 @@ public class ArithmeticCalculaorServlet extends HttpServlet {
         String firstStr = request.getParameter("first");
         String secondStr = request.getParameter("second");
 
-        double first = Double.parseDouble(firstStr);
-        double second = Double.parseDouble(secondStr);
+        String message = "---";
 
-        double result;
+        try {
 
-        String operation = request.getParameter("operation");
+            double first = Double.parseDouble(firstStr);
+            double second = Double.parseDouble(secondStr);
 
-        switch (operation) {
-            case "+": {
-                result = first + second;
-                break;
+            double result;
+
+            String operation = request.getParameter("operation");
+
+            switch (operation) {
+                case "+": {
+                    result = first + second;
+                    break;
+                }
+                case "-": {
+                    result = second - first;
+                    break;
+                }
+                case "*": {
+                    result = first * second;
+                    break;
+                }
+                case "%": {
+                    result = first % second;
+                    break;
+                }
+
+                default: {
+                    result = Double.NaN;
+                    break;
+                }
             }
-            case "-": {
-                result = second - first;
-                break;
-            }
-            case "*": {
-                result = first * second;
-                break;
-            }
-            case "%": {
-                result = first % second;
-                break;
-            }
 
-            default: {
-                result = Double.NaN;
-                break;
+            if (Double.isNaN(result)) {
+                message = "Result is not a number";
+            } else {
+                message = String.format("%.2f", result);
             }
-        }
-
-        String message;
-
-        if (Double.isNaN(result)) {
-            message = "Result is not a number";
-        } else {
-            message = String.format("%.4f", result);
+        } catch (Exception ex) {
+            message = "Invalid";
         }
         request.setAttribute("message", message);
 
