@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Simple Note Keeper</h1>
-        <h2>View Note</h2>
+        <h2>Edit Note</h2>
         
         <form>
             <label>
@@ -24,7 +24,7 @@
             <label for="contents">Contents: </label>
             <textarea id="contents"></textarea>
             <br>
-            <input type="submit">
+            <button type="submit">Submit</button>
         </form>
     </body>
 </html>
