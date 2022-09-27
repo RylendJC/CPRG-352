@@ -25,6 +25,6 @@
             ${note.contents}
         </p>
         
-        <a href="#">Edit</a>
+        <a href="note?edit">Edit</a>
     </body>
 </html>
