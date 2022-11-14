@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "role")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"), 
-    @NamedQuery(name = "Role.findByNoteId", query = "SELECT r FROM Role r WHERE n.id = :role_id"), @NamedQuery(name = "Note.findByTitle", query = "SELECT n FROM Note n WHERE n.title = :title"),
-    @NamedQuery(name = "Role.findByContents", query = "SELECT n FROM Note n WHERE n.name = :role_name")})
+    @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
+    @NamedQuery(name = "Role.findByRoleId", query = "SELECT r FROM Role r WHERE r.id = :id"),
+    @NamedQuery(name = "Role.findByRoleName", query = "SELECT r FROM Role r WHERE r.name = :name")})
 public class Role implements Serializable {
 
     @Id
@@ -41,7 +41,9 @@ public class Role implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
     private List<User> userList;
 
-
+    public Role() {
+    
+    }
 
     public Role(int id, String name) {
         this.id = id;

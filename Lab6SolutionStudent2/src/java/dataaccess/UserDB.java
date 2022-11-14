@@ -3,7 +3,7 @@ package dataaccess;
 import java.util.List;
 import javax.persistence.*;
 import models.*;
-import static models.Role_.id;
+
 
 /**
  *
@@ -13,21 +13,20 @@ import static models.Role_.id;
 public class UserDB {
 
     public List<User> getAll() throws Exception {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        try {
-            List<User> user = em.createNamedQuery("User.findAll",
-                    User.class).getResultList();
-            return user;
-        } finally {
-            em.close();
-        }
+        EntityManagerFactory emFactory = DBUtil.getEmFactory();
+        
+        EntityManager em = emFactory.createEntityManager();
+        
+        return em.createNamedQuery("User.findAll", User.class).getResultList();
     }
 
     public User get(String email) throws Exception {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityManagerFactory emFactory = DBUtil.getEmFactory();
+        
+        EntityManager em = emFactory.createEntityManager();
 
         try {
-            User user = em.find(User.class, id);
+            User user = em.find(User.class, email);
             return user;
         } finally {
             em.close();
@@ -36,8 +35,9 @@ public class UserDB {
 
     public void insert(User user) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        
         EntityTransaction trans = em.getTransaction();
-
+        
         try {
             trans.begin();
             em.persist(user);
@@ -52,6 +52,7 @@ public class UserDB {
 
     public void update(User user) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        
         EntityTransaction trans = em.getTransaction();
 
         try {
